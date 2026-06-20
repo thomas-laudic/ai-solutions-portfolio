@@ -2,21 +2,20 @@
 
 Portfolio évolutif d’IA appliquée, d’automatisation et de workflows B2B.
 
-Ce dépôt sert à construire des démonstrateurs courts, utiles et présentables pour une recherche d’emploi vers des rôles en IA appliquée, automatisation, data, produit, conseil, Solutions Engineering, AI Solutions Engineering, Technical Consulting ou Forward Deployed AI Engineering.
+Ce dépôt rassemble des démonstrateurs courts et documentés pour appuyer ma recherche d’emploi vers des rôles en IA appliquée, automatisation, data, produit, conseil, Solutions Engineering, AI Solutions Engineering, Technical Consulting ou Forward Deployed AI Engineering.
 
 ## Objectif
 
-Le portfolio n’est pas une startup, un SaaS ou un produit commercial.
-
-Il sert à montrer ma capacité à :
+Montrer ma capacité à :
 
 * comprendre un problème métier ;
 * le transformer en solution technique simple ;
-* écrire du code lisible ;
-* documenter les choix ;
+* produire du code lisible ;
+* documenter les choix essentiels ;
 * tester une version minimale ;
-* expliquer les limites et les arbitrages ;
-* présenter un projet clairement en entretien.
+* expliquer les limites et les arbitrages.
+
+Ce portfolio n’est pas un produit commercial, une startup ou un SaaS. Il sert à rendre mes compétences plus concrètes pour les candidatures, les entretiens et les conversations réseau.
 
 ## Positionnement
 
@@ -33,43 +32,29 @@ Axes d’intérêt :
 * arbitrage coût / qualité ;
 * documentation technique claire.
 
-## Principe directeur
+## Projets possibles
 
-Ce portfolio est évolutif.
+### 1. Job Application Tracker
 
-Les projets peuvent changer selon :
+Suivi structuré des candidatures, relances, statuts, contacts et prochaines actions.
 
-* les offres d’emploi observées ;
-* les retours de recruteurs ;
-* les conversations réseau ;
-* les compétences demandées ;
-* les opportunités d’entretien.
+### 2. Job Offer Analyzer
 
-Chaque projet doit rester minimum viable, compréhensible rapidement et utile pour l’emploi.
+Analyse d’offres IA, data, produit ou Solutions Engineer pour extraire les compétences demandées, mots-clés récurrents et écarts avec mon profil.
 
-## Axes de projets possibles
+### 3. B2B Document AI Workflow
 
-### 1. Suivi de candidatures
+Démonstrateur de traitement documentaire IA : classification d’une demande, recherche de sources, génération de réponse contrôlée, validation humaine et limites explicites.
 
-Structurer les candidatures, relances, statuts, contacts et prochaines actions.
+Cas d’usage possibles : RFP, questionnaires InfoSec, due diligence sécurité, documentation interne ou demandes client.
 
-### 2. Analyse d’offres d’emploi
+### 4. Source-Grounded Answering
 
-Extraire les compétences, mots-clés et attentes récurrentes dans des offres IA, data, produit ou Solutions Engineer.
+Mini-système de réponse à partir de documents fournis, avec sources, limites et validation humaine.
 
-### 3. Workflow documentaire IA B2B
+### 5. Cost / Quality / Privacy Routing
 
-Démontrer comment une solution IA peut traiter une demande documentaire, récupérer des sources, générer une réponse contrôlée et imposer une validation humaine.
-
-Exemples possibles : RFP, questionnaires InfoSec, due diligence sécurité, documentation interne ou notes projet.
-
-### 4. Réponse sourcée avec validation humaine
-
-Produire une réponse à partir de documents fournis, avec sources, limites explicites et validation humaine.
-
-### 5. Routage coût / qualité / confidentialité
-
-Choisir une stratégie simple selon la tâche, la complexité, le coût estimé et la sensibilité des données.
+Module simple pour choisir une stratégie de traitement selon la tâche, la complexité, le coût estimé et la sensibilité des données.
 
 ## Compétences démontrées
 
@@ -85,42 +70,7 @@ Choisir une stratégie simple selon la tâche, la complexité, le coût estimé 
 * documentation technique ;
 * sécurité et confidentialité de base ;
 * compréhension produit / métier ;
-* capacité à expliquer les arbitrages.
-
-## Méthode de travail
-
-Codex est utilisé comme assistant d’exécution.
-
-Méthode attendue :
-
-1. cadrer le besoin ;
-2. proposer une version minimale ;
-3. implémenter simplement ;
-4. tester ;
-5. relire humainement ;
-6. documenter ;
-7. décider de la prochaine amélioration utile.
-
-## Hors scope actuel
-
-Les sujets suivants sont repoussés sauf justification forte :
-
-* architecture enterprise ;
-* agents complexes ;
-* multi-agent workflows ;
-* LangGraph avancé ;
-* local LLM en production ;
-* vLLM / Ollama en production ;
-* RAGAS avancé ;
-* fine-tuning ;
-* MLOps complet ;
-* architecture VPC ;
-* connecteurs enterprise ;
-* SaaS complet ;
-* pricing ;
-* stratégie commerciale ;
-* prospection freelance ;
-* micro-agence.
+* arbitrage technique.
 
 ## Statut
 
@@ -132,10 +82,3 @@ Priorité actuelle :
 2. renforcer les candidatures ;
 3. préparer les entretiens ;
 4. apprendre uniquement ce qui sert l’employabilité à court terme.
-
-## Règle de décision
-
-> Est-ce que cette action améliore concrètement mes chances de trouver un bon emploi dans les 2 à 6 semaines ?
-
-Si oui : faire la version minimale utile.
-Si non : repousser, simplifier ou documenter comme hors scope.
