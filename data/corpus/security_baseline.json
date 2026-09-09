@@ -1,0 +1,10 @@
+{
+  "id": "security-baseline-2026",
+  "title": "Synthetic security baseline",
+  "approved": true,
+  "current": true,
+  "shareable": true,
+  "keywords": ["customer", "data", "encrypted", "at", "rest"],
+  "excerpt": "Customer data is encrypted at rest using AES-256.",
+  "response": "Customer data is encrypted at rest using AES-256."
+}
