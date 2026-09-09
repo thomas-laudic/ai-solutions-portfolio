@@ -49,3 +49,13 @@ Open `http://127.0.0.1:8000/` for the demonstration or
 `requirements.txt` expresses the four direct dependencies. `requirements.lock`
 pins the validated complete environment for both PCs. Regenerate the lock only
 after an intentional dependency change and a passing test run.
+
+Run the Golden Dataset report separately when changing retrieval, routing, or
+evidence handling:
+
+```powershell
+.\.venv\Scripts\pytest.exe tests\eval -v -s
+```
+
+See [the evaluation guide](EVALUATION.md) for metric definitions and the
+current fidelity boundary.

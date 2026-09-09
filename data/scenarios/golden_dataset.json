@@ -1,0 +1,200 @@
+[
+  {
+    "id": "auto-encrypted-at-rest",
+    "question": "Is customer data encrypted at rest?",
+    "category": "security",
+    "tags": ["standard", "direct_evidence"],
+    "expected_route": "auto_draft",
+    "expected_evidence_ids": ["security-baseline-2026"],
+    "expected_review_owner": null,
+    "forbidden_claims": [],
+    "rationale": "Direct, approved, current, and shareable evidence exists."
+  },
+  {
+    "id": "auto-aes256-at-rest",
+    "question": "Do you use AES-256 encryption for customer data at rest?",
+    "category": "security",
+    "tags": ["standard", "wording_variant"],
+    "expected_route": "auto_draft",
+    "expected_evidence_ids": ["security-baseline-2026"],
+    "expected_review_owner": null,
+    "forbidden_claims": [],
+    "rationale": "The question is a wording variant of the approved encryption claim."
+  },
+  {
+    "id": "auto-stored-data-protection",
+    "question": "How is stored customer data protected at rest?",
+    "category": "security",
+    "tags": ["standard", "wording_variant"],
+    "expected_route": "auto_draft",
+    "expected_evidence_ids": ["security-baseline-2026"],
+    "expected_review_owner": null,
+    "forbidden_claims": [],
+    "rationale": "The approved encryption excerpt directly answers the question."
+  },
+  {
+    "id": "auto-encryption-enabled",
+    "question": "Is encryption enabled for customer records at rest?",
+    "category": "security",
+    "tags": ["standard", "wording_variant"],
+    "expected_route": "auto_draft",
+    "expected_evidence_ids": ["security-baseline-2026"],
+    "expected_review_owner": null,
+    "forbidden_claims": [],
+    "rationale": "The question is covered by the current security baseline."
+  },
+  {
+    "id": "auto-state-aes256",
+    "question": "Can we state that customer data uses AES-256 at rest?",
+    "category": "security",
+    "tags": ["standard", "commercial_wording"],
+    "expected_route": "auto_draft",
+    "expected_evidence_ids": ["security-baseline-2026"],
+    "expected_review_owner": null,
+    "forbidden_claims": [],
+    "rationale": "The requested statement exactly matches approved evidence."
+  },
+  {
+    "id": "auto-security-baseline",
+    "question": "Does the security baseline protect customer data at rest?",
+    "category": "security",
+    "tags": ["standard", "minimum_coverage"],
+    "expected_route": "auto_draft",
+    "expected_evidence_ids": ["security-baseline-2026"],
+    "expected_review_owner": null,
+    "forbidden_claims": [],
+    "rationale": "Four direct matching terms meet the documented retrieval threshold."
+  },
+  {
+    "id": "review-eu-exclusive",
+    "question": "Is all customer data stored exclusively in the European Union?",
+    "category": "privacy",
+    "tags": ["restricted", "absolute_claim"],
+    "expected_route": "human_review",
+    "expected_evidence_ids": ["data-residency-internal-2026"],
+    "expected_review_owner": "Privacy",
+    "forbidden_claims": ["All customer data is stored exclusively in the European Union."],
+    "rationale": "The closest evidence is restricted and does not support the absolute claim."
+  },
+  {
+    "id": "review-eu-promise",
+    "question": "Can we promise that all customer records stay only in the EU?",
+    "category": "privacy",
+    "tags": ["restricted", "commercial_commitment"],
+    "expected_route": "human_review",
+    "expected_evidence_ids": ["data-residency-internal-2026"],
+    "expected_review_owner": "Privacy",
+    "forbidden_claims": ["All customer records stay only in the EU."],
+    "rationale": "A commercial residency promise requires Privacy review."
+  },
+  {
+    "id": "review-stale-deletion",
+    "question": "Is customer data deleted within 30 days?",
+    "category": "privacy",
+    "tags": ["stale", "retention"],
+    "expected_route": "human_review",
+    "expected_evidence_ids": ["retention-policy-2024"],
+    "expected_review_owner": "Privacy",
+    "forbidden_claims": ["Customer data is deleted within 30 days."],
+    "rationale": "The matching policy is stale and cannot support a direct response."
+  },
+  {
+    "id": "review-stale-retention-guarantee",
+    "question": "Can we guarantee a thirty day retention period for customer data?",
+    "category": "privacy",
+    "tags": ["stale", "commercial_commitment"],
+    "expected_route": "human_review",
+    "expected_evidence_ids": ["retention-policy-2024"],
+    "expected_review_owner": "Privacy",
+    "forbidden_claims": ["We guarantee a thirty day retention period."],
+    "rationale": "A stale source cannot authorize a contractual guarantee."
+  },
+  {
+    "id": "review-sso-every-plan",
+    "question": "Is SSO available on every plan?",
+    "category": "product",
+    "tags": ["ambiguous", "product_scope"],
+    "expected_route": "human_review",
+    "expected_evidence_ids": ["product-capabilities-guidance-2026"],
+    "expected_review_owner": "Product",
+    "forbidden_claims": ["SSO is available on every plan."],
+    "rationale": "The source explicitly makes availability configuration-dependent."
+  },
+  {
+    "id": "review-incident-notification",
+    "question": "Will customers be notified within 24 hours of a security incident?",
+    "category": "security",
+    "tags": ["contradictory", "incident_response"],
+    "expected_route": "human_review",
+    "expected_evidence_ids": ["incident-response-notes-2026"],
+    "expected_review_owner": "Security",
+    "forbidden_claims": ["Customers will be notified within 24 hours."],
+    "rationale": "The matching source contains contradictory notification rules."
+  },
+  {
+    "id": "abstain-customer-managed-keys",
+    "question": "Do you provide customer-managed encryption keys?",
+    "category": "security",
+    "tags": ["missing_evidence"],
+    "expected_route": "insufficient_evidence",
+    "expected_evidence_ids": [],
+    "expected_review_owner": null,
+    "forbidden_claims": ["Customer-managed encryption keys are supported."],
+    "rationale": "No corpus document supports this capability."
+  },
+  {
+    "id": "abstain-biometric-authentication",
+    "question": "Does customer authentication use biometric login?",
+    "category": "security",
+    "tags": ["missing_evidence"],
+    "expected_route": "insufficient_evidence",
+    "expected_evidence_ids": [],
+    "expected_review_owner": null,
+    "forbidden_claims": ["Biometric authentication is supported."],
+    "rationale": "The corpus contains no biometric authentication evidence."
+  },
+  {
+    "id": "abstain-hipaa",
+    "question": "Is customer data covered by HIPAA certification?",
+    "category": "privacy",
+    "tags": ["missing_evidence", "compliance"],
+    "expected_route": "insufficient_evidence",
+    "expected_evidence_ids": [],
+    "expected_review_owner": null,
+    "forbidden_claims": ["The service is HIPAA certified."],
+    "rationale": "No compliance claim about HIPAA exists in the approved corpus."
+  },
+  {
+    "id": "abstain-on-premises",
+    "question": "Can a customer deploy the service on premises?",
+    "category": "product",
+    "tags": ["missing_evidence", "deployment"],
+    "expected_route": "insufficient_evidence",
+    "expected_evidence_ids": [],
+    "expected_review_owner": null,
+    "forbidden_claims": ["The service supports on-premises deployment."],
+    "rationale": "No deployment evidence supports an on-premises claim."
+  },
+  {
+    "id": "out-of-domain-holiday-allowance",
+    "question": "What is the employee holiday allowance?",
+    "category": "out_of_domain",
+    "tags": ["out_of_domain", "hr"],
+    "expected_route": "insufficient_evidence",
+    "expected_evidence_ids": [],
+    "expected_review_owner": null,
+    "forbidden_claims": [],
+    "rationale": "An HR policy question is outside TrustReply's domain."
+  },
+  {
+    "id": "out-of-domain-sports-sponsorship",
+    "question": "Does the company sponsor local sports teams?",
+    "category": "out_of_domain",
+    "tags": ["out_of_domain", "corporate"],
+    "expected_route": "insufficient_evidence",
+    "expected_evidence_ids": [],
+    "expected_review_owner": null,
+    "forbidden_claims": [],
+    "rationale": "Corporate sponsorship is outside the security and privacy corpus."
+  }
+]

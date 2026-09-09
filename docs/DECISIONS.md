@@ -37,3 +37,14 @@ duplicate strategic documentation and premature product scope.
   review owner, cost, latency, and human-review limitation.
 - The API remains the machine-readable contract. Presentation logic does not
   make routing decisions.
+
+## 2026-09-09: Golden Dataset before audit implementation
+
+- Audit fields will be driven by evaluation needs rather than collected in
+  advance without a metric.
+- The reference set contains 18 scenarios across direct evidence, restricted,
+  stale, ambiguous, contradictory, missing-evidence, and out-of-domain cases.
+- The first fidelity check is deliberately extractive: every draft sentence
+  must match a known cited excerpt, and every citation identifier must exist.
+- Route accuracy, abstention and review recall, out-of-domain recall, citation
+  compliance, unsupported claims, latency, and cost form the initial report.

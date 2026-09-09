@@ -1,0 +1,13 @@
+{
+  "id": "retention-policy-2024",
+  "title": "Synthetic legacy retention policy",
+  "approved": true,
+  "current": false,
+  "shareable": true,
+  "ambiguous": false,
+  "contradictory": false,
+  "review_owner": "Privacy",
+  "keywords": ["customer", "data", "deleted", "deletion", "retention", "day", "days", "30", "thirty", "guarantee"],
+  "minimum_match_count": 4,
+  "excerpt": "The 2024 policy targeted deletion of customer data within 30 days after contract termination."
+}

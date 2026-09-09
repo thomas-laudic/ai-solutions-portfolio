@@ -46,23 +46,24 @@ claims using a small annotated scenario set.
 
 ## Current state
 
-The first local vertical slice is implemented: a small synthetic corpus, three
-annotated scenarios, a Python API, a minimal server-rendered interface, and
-acceptance tests for each route. It has no external model call, persistence
+The first local vertical slice is implemented: five synthetic documents, an
+18-scenario Golden Dataset, a Python API, a minimal server-rendered interface,
+and acceptance and evaluation tests. It has no external model call, persistence
 layer, or client-side application.
 
 ## Current milestone
 
-Validate the first end-to-end slice as a short local demonstration, then define
-the audit boundary before considering any model integration.
+Use the Golden Dataset metrics to define the minimal audit boundary before
+considering any model integration.
 
 ## Active tasks
 
-1. Keep the three-route scenario set and deterministic decision policy covered
-   by acceptance tests.
-2. Improve the corpus only when it supports a stated evaluation case.
-3. Define the minimal audit record and its treatment of question content before
-   deciding whether a model integration is justified.
+1. Keep the Golden Dataset and deterministic decision policy covered by the
+   evaluation report.
+2. Define the minimal audit record from the metrics already measured, including
+   its treatment of question content.
+3. Specify and test a fail-closed generation boundary before adding any model
+   dependency or external call.
 
 ## Success criteria
 

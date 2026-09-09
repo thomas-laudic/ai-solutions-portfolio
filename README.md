@@ -40,7 +40,8 @@ The first local vertical slice is implemented. Its minimal web interface routes
 three representative synthetic scenarios to `auto_draft`, `human_review`, or
 `insufficient_evidence`, with acceptance tests for each route and presentation.
 See the [vertical-slice guide](docs/VERTICAL_SLICE.md) for the API contract, run
-commands, and stated limits.
+commands, and stated limits. A separate [evaluation guide](docs/EVALUATION.md)
+documents the 18-scenario Golden Dataset and its metrics.
 
 See [the operational project brief](docs/PROJECT.md) and
 [implementation decisions](docs/DECISIONS.md) for the current state.

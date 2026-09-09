@@ -8,6 +8,7 @@ from pathlib import Path
 from time import perf_counter
 from typing import Any
 
+from trustreply.fidelity import assess_result_fidelity
 from trustreply.models import Evidence, QuestionResult
 
 CORPUS_DIRECTORY = Path(__file__).resolve().parents[2] / "data" / "corpus"
@@ -21,16 +22,26 @@ def _load_documents() -> list[dict[str, Any]]:
     return [json.loads(path.read_text(encoding="utf-8")) for path in CORPUS_DIRECTORY.glob("*.json")]
 
 
-def _select_document(question: str, documents: list[dict[str, Any]]) -> dict[str, Any] | None:
+def _document_scores(question: str, documents: list[dict[str, Any]]) -> list[tuple[int, dict[str, Any]]]:
     question_tokens = _tokens(question)
-    matches = [
+    return [
         (len(question_tokens & set(document["keywords"])), document)
         for document in documents
     ]
+
+
+def _select_document(question: str, documents: list[dict[str, Any]]) -> dict[str, Any] | None:
+    matches = _document_scores(question, documents)
     score, document = max(matches, default=(0, None), key=lambda match: match[0])
     if document is None or score < document["minimum_match_count"]:
         return None
     return document
+
+
+def classify_question_domain(question: str) -> str:
+    """Classify a question as in-domain when it has any corpus vocabulary signal."""
+    scores = _document_scores(question, _load_documents())
+    return "in_domain" if any(score > 0 for score, _ in scores) else "out_of_domain"
 
 
 def _evidence_from(document: dict[str, Any]) -> Evidence:
@@ -47,7 +58,8 @@ def _evidence_from(document: dict[str, Any]) -> Evidence:
 def answer_question(question: str) -> QuestionResult:
     """Return a safe structured result from the approved local corpus."""
     started_at = perf_counter()
-    document = _select_document(question, _load_documents())
+    documents = _load_documents()
+    document = _select_document(question, documents)
 
     if document is None:
         route = "insufficient_evidence"
@@ -56,6 +68,20 @@ def answer_question(question: str) -> QuestionResult:
         evidence = []
         justification = "No approved source directly supports a safe response."
         review_owner = None
+    elif document["contradictory"]:
+        route = "human_review"
+        status = "review_required"
+        draft = None
+        evidence = [_evidence_from(document)]
+        justification = "The matching evidence is contradictory and requires expert review."
+        review_owner = document["review_owner"]
+    elif document["ambiguous"]:
+        route = "human_review"
+        status = "review_required"
+        draft = None
+        evidence = [_evidence_from(document)]
+        justification = "The matching evidence is ambiguous and requires expert review."
+        review_owner = document["review_owner"]
     elif not all(document[key] for key in ("approved", "current", "shareable")):
         route = "human_review"
         status = "review_required"
@@ -71,7 +97,7 @@ def answer_question(question: str) -> QuestionResult:
         justification = "Approved, current, shareable evidence directly covers the standard question."
         review_owner = None
 
-    return QuestionResult(
+    result = QuestionResult(
         route=route,
         status=status,
         draft=draft,
@@ -80,5 +106,10 @@ def answer_question(question: str) -> QuestionResult:
         review_owner=review_owner,
         unsupported_claims=[],
         cost_usd=0.0,
-        latency_ms=round((perf_counter() - started_at) * 1000, 3),
+        latency_ms=0.0,
     )
+    fidelity = assess_result_fidelity(result, {item["id"] for item in documents})
+    return result.model_copy(update={
+        "unsupported_claims": list(fidelity.unsupported_claims),
+        "latency_ms": round((perf_counter() - started_at) * 1000, 3),
+    })
