@@ -46,21 +46,23 @@ claims using a small annotated scenario set.
 
 ## Current state
 
-The repository foundation exists. No application code, synthetic corpus,
-scenario set, dependency file, test runner, or interface exists yet.
+The first local vertical slice is implemented: a small synthetic corpus, three
+annotated scenarios, a Python API, and acceptance tests for each route. It has
+no external model call, persistence layer, or user interface beyond local API
+documentation.
 
 ## Current milestone
 
-Define the first end-to-end vertical slice before selecting dependencies or
-building an interface.
+Complete and document the first end-to-end vertical slice before adding an
+interface or any model integration.
 
 ## Active tasks
 
-1. Define a minimal synthetic corpus and three representative annotated
-   questions.
-2. Define the result schema, evidence fields, and acceptance criteria for the
-   three routes.
-3. Implement and test one narrow end-to-end path using those fixtures.
+1. Keep the three-route scenario set and deterministic decision policy covered
+   by acceptance tests.
+2. Improve the corpus only when it supports a stated evaluation case.
+3. Decide whether a minimal interface or a model integration is justified by
+   the completed local slice.
 
 ## Success criteria
 

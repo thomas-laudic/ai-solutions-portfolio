@@ -3,6 +3,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
+from trustreply.models import QuestionResult
 from trustreply.service import answer_question
 
 
@@ -14,5 +15,5 @@ class QuestionRequest(BaseModel):
 
 
 @app.post("/questions")
-def evaluate_question(request: QuestionRequest) -> dict[str, object]:
+def evaluate_question(request: QuestionRequest) -> QuestionResult:
     return answer_question(request.question)

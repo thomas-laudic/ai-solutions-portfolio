@@ -36,7 +36,11 @@ or compliance guarantees.
 
 ## Status
 
-The project is scoped; implementation has not started yet.
+The first local vertical slice is implemented. It routes three representative
+synthetic scenarios to `auto_draft`, `human_review`, or
+`insufficient_evidence`, with acceptance tests for each route. See the
+[vertical-slice guide](docs/VERTICAL_SLICE.md) for the API contract, run
+commands, and stated limits.
 
 See [the operational project brief](docs/PROJECT.md) and
 [implementation decisions](docs/DECISIONS.md) for the current state.

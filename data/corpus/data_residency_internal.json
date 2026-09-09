@@ -1,0 +1,11 @@
+{
+  "id": "data-residency-internal-2026",
+  "title": "Synthetic data residency guidance",
+  "approved": true,
+  "current": true,
+  "shareable": false,
+  "review_owner": "Privacy",
+  "keywords": ["customer", "data", "stored", "european", "union"],
+  "minimum_match_count": 4,
+  "excerpt": "Customer data may be processed in the European Union, subject to the customer's configured region and contract."
+}

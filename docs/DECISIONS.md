@@ -15,3 +15,15 @@
 
 These decisions keep the project portable across local clones while avoiding
 duplicate strategic documentation and premature product scope.
+
+## 2026-09-09: First vertical slice and reproducible local environment
+
+- The first slice uses a deterministic local policy over synthetic documents;
+  it does not call an LLM or any external service.
+- The three routes are demonstrated by `auto_draft`, restricted-evidence
+  `human_review`, and `insufficient_evidence` scenarios.
+- `requirements.txt` remains the small direct-dependency manifest.
+  `requirements.lock` pins the complete environment validated on Python 3.12.7
+  for reproducible installation on both PCs.
+- A human still reviews any draft before sending it. A restricted source never
+  produces a direct draft.

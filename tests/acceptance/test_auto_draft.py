@@ -21,6 +21,9 @@ def test_direct_approved_evidence_returns_a_sourced_auto_draft() -> None:
         "document_id": "security-baseline-2026",
         "title": "Synthetic security baseline",
         "excerpt": "Customer data is encrypted at rest using AES-256.",
+        "approved": True,
+        "current": True,
+        "shareable": True,
     }]
     assert result["unsupported_claims"] == []
     assert result["cost_usd"] == 0.0

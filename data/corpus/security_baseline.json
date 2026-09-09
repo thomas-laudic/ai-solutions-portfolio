@@ -4,7 +4,9 @@
   "approved": true,
   "current": true,
   "shareable": true,
+  "review_owner": null,
   "keywords": ["customer", "data", "encrypted", "at", "rest"],
+  "minimum_match_count": 4,
   "excerpt": "Customer data is encrypted at rest using AES-256.",
   "response": "Customer data is encrypted at rest using AES-256."
 }
