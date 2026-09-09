@@ -27,3 +27,13 @@ duplicate strategic documentation and premature product scope.
   for reproducible installation on both PCs.
 - A human still reviews any draft before sending it. A restricted source never
   produces a direct draft.
+
+## 2026-09-09: Minimal interface before audit or model integration
+
+- The first user interface is a server-rendered FastAPI page over the existing
+  deterministic service and result models.
+- It adds no frontend framework, client-side script, or production dependency.
+- It exposes the three annotated examples and displays the decision, evidence,
+  review owner, cost, latency, and human-review limitation.
+- The API remains the machine-readable contract. Presentation logic does not
+  make routing decisions.

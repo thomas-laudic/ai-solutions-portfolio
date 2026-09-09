@@ -28,6 +28,13 @@ is intentional.
 `unsupported_claims`, `cost_usd`, and `latency_ms`. Each evidence item records
 the source identifier, excerpt, and approval/current/shareability flags.
 
+## Minimal interface
+
+`GET /` serves a local, server-rendered demonstration over the same service and
+result models as the API. It includes the three annotated examples and makes
+the route, evidence, review owner, cost, latency, and human-review boundary
+visible. It uses no client-side script or external asset.
+
 ## Local use on Windows
 
 ```powershell
@@ -36,7 +43,8 @@ the source identifier, excerpt, and approval/current/shareability flags.
 .\.venv\Scripts\uvicorn.exe trustreply.app:app --app-dir src --reload
 ```
 
-Open `http://127.0.0.1:8000/docs` to submit a question through the local API.
+Open `http://127.0.0.1:8000/` for the demonstration or
+`http://127.0.0.1:8000/docs` for the machine-readable API documentation.
 
 `requirements.txt` expresses the four direct dependencies. `requirements.lock`
 pins the validated complete environment for both PCs. Regenerate the lock only

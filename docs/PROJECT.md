@@ -47,22 +47,22 @@ claims using a small annotated scenario set.
 ## Current state
 
 The first local vertical slice is implemented: a small synthetic corpus, three
-annotated scenarios, a Python API, and acceptance tests for each route. It has
-no external model call, persistence layer, or user interface beyond local API
-documentation.
+annotated scenarios, a Python API, a minimal server-rendered interface, and
+acceptance tests for each route. It has no external model call, persistence
+layer, or client-side application.
 
 ## Current milestone
 
-Complete and document the first end-to-end vertical slice before adding an
-interface or any model integration.
+Validate the first end-to-end slice as a short local demonstration, then define
+the audit boundary before considering any model integration.
 
 ## Active tasks
 
 1. Keep the three-route scenario set and deterministic decision policy covered
    by acceptance tests.
 2. Improve the corpus only when it supports a stated evaluation case.
-3. Decide whether a minimal interface or a model integration is justified by
-   the completed local slice.
+3. Define the minimal audit record and its treatment of question content before
+   deciding whether a model integration is justified.
 
 ## Success criteria
 

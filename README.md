@@ -36,10 +36,10 @@ or compliance guarantees.
 
 ## Status
 
-The first local vertical slice is implemented. It routes three representative
-synthetic scenarios to `auto_draft`, `human_review`, or
-`insufficient_evidence`, with acceptance tests for each route. See the
-[vertical-slice guide](docs/VERTICAL_SLICE.md) for the API contract, run
+The first local vertical slice is implemented. Its minimal web interface routes
+three representative synthetic scenarios to `auto_draft`, `human_review`, or
+`insufficient_evidence`, with acceptance tests for each route and presentation.
+See the [vertical-slice guide](docs/VERTICAL_SLICE.md) for the API contract, run
 commands, and stated limits.
 
 See [the operational project brief](docs/PROJECT.md) and
