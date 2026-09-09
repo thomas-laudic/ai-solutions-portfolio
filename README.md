@@ -1,84 +1,50 @@
-# AI Solutions Portfolio
+# TrustReply
 
-Portfolio évolutif d’IA appliquée, d’automatisation et de workflows B2B.
+TrustReply is a portfolio prototype for controlled assistance with residual B2B
+security and privacy questions. It helps a Sales Engineer find approved
+evidence, prepare a sourced response when appropriate, and make uncertainty
+visible when a human expert must review the case or evidence is missing.
 
-Ce dépôt rassemble des démonstrateurs courts et documentés pour appuyer ma recherche d’emploi vers des rôles en IA appliquée, automatisation, data, produit, conseil, Solutions Engineering, AI Solutions Engineering, Technical Consulting ou Forward Deployed AI Engineering.
+## Why it matters
 
-## Objectif
+A plausible but unsupported answer can create a commercial commitment, slow a
+deal, or disclose information at the wrong level. The project focuses on the
+decision around a response, not on generating text alone.
 
-Montrer ma capacité à :
+## MVP
 
-* comprendre un problème métier ;
-* le transformer en solution technique simple ;
-* produire du code lisible ;
-* documenter les choix essentiels ;
-* tester une version minimale ;
-* expliquer les limites et les arbitrages.
+For one question at a time, the prototype will:
 
-Ce portfolio n’est pas un produit commercial, une startup ou un SaaS. Il sert à rendre mes compétences plus concrètes pour les candidatures, les entretiens et les conversations réseau.
+- search a small approved synthetic corpus;
+- return a structured result with evidence, justification, status, review
+  owner, cost, and latency;
+- choose one route: `auto_draft`, `human_review`, or
+  `insufficient_evidence`;
+- evaluate routing, citations, and unsupported-claim behavior against a small
+  annotated set.
 
-## Positionnement
+The final prototype will use four to five synthetic documents and roughly 15
+to 20 annotated questions. A human remains responsible for review and sending
+any response.
 
-> Ingénieur IA orienté solutions, automatisation et workflows B2B, capable de traduire un besoin métier en démonstrateur technique clair.
+## Out of scope
 
-Axes d’intérêt :
+TrustReply is not a full security questionnaire platform, Trust Center,
+compliance product, legal advisor, multi-user application, or multi-agent
+system. It will not send responses automatically or claim real-world security
+or compliance guarantees.
 
-* IA appliquée ;
-* automatisation de workflows ;
-* RAG documentaire simple ;
-* systèmes IA contrôlés ;
-* confidentialité des données ;
-* validation humaine ;
-* arbitrage coût / qualité ;
-* documentation technique claire.
+## Status
 
-## Projets possibles
+The project is scoped; implementation has not started yet.
 
-### 1. Job Application Tracker
+See [the operational project brief](docs/PROJECT.md) and
+[implementation decisions](docs/DECISIONS.md) for the current state.
 
-Suivi structuré des candidatures, relances, statuts, contacts et prochaines actions.
+## Repository layout
 
-### 2. Job Offer Analyzer
-
-Analyse d’offres IA, data, produit ou Solutions Engineer pour extraire les compétences demandées, mots-clés récurrents et écarts avec mon profil.
-
-### 3. B2B Document AI Workflow
-
-Démonstrateur de traitement documentaire IA : classification d’une demande, recherche de sources, génération de réponse contrôlée, validation humaine et limites explicites.
-
-Cas d’usage possibles : RFP, questionnaires InfoSec, due diligence sécurité, documentation interne ou demandes client.
-
-### 4. Source-Grounded Answering
-
-Mini-système de réponse à partir de documents fournis, avec sources, limites et validation humaine.
-
-### 5. Cost / Quality / Privacy Routing
-
-Module simple pour choisir une stratégie de traitement selon la tâche, la complexité, le coût estimé et la sensibilité des données.
-
-## Compétences démontrées
-
-* Python appliqué ;
-* APIs simples ;
-* automatisation ;
-* manipulation de documents ;
-* bases de RAG documentaire ;
-* réponses sourcées ;
-* validation humaine ;
-* estimation simple de coûts ;
-* Git / GitHub propre ;
-* documentation technique ;
-* sécurité et confidentialité de base ;
-* compréhension produit / métier ;
-* arbitrage technique.
-
-## Statut
-
-Portfolio en construction.
-
-Priorité actuelle :
-
-1. produire des livrables visibles ;
-2. renforcer les candidatures ;
-3. préparer les entretiens ;
-4. apprendre uniquement ce qui sert l’employabilité à court terme.
+```text
+docs/   Current scope and durable implementation decisions
+src/    Application code
+tests/  Automated checks
+```

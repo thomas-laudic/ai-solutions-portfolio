@@ -1,146 +1,55 @@
 # AGENTS.md
 
-## Role
+## Purpose
 
-You are an execution assistant for this portfolio repository.
+TrustReply is a job-search portfolio project for applied AI, automation, and
+AI Solutions Engineering roles. It demonstrates controlled assistance for a
+residual B2B security or privacy question.
 
-Help produce simple, useful and presentable deliverables for a job search in applied AI, automation, data, product, consulting, Solutions Engineering, AI Solutions Engineering, Technical Consulting and Forward Deployed AI Engineering.
+Optimize for clear, presentable work that can be completed and explained in an
+interview. Build the smallest useful version.
 
-Prioritize execution, clarity and employability.
+## Context and scope
 
-## Main rule
+Before an important change, read:
 
-Before proposing or implementing anything, apply this filter:
+1. `README.md`
+2. `docs/PROJECT.md`
+3. `docs/DECISIONS.md`
 
-> Does this action improve the chances of getting a good job or producing a useful portfolio deliverable in the next 2 to 6 weeks?
+`docs/PROJECT.md` links to the detailed TrustReply context in Google Drive.
+Read that source when a task affects product scope, workflow, or a material
+technical decision. Do not copy its long-form documents into this repository.
 
-If yes: do the smallest useful version.
-If no: simplify, postpone or mark as out of scope.
+The MVP boundary is defined in `docs/PROJECT.md`. Do not expand it or change
+its exclusions without explicit approval.
 
-## Current scope
+## Working mode
 
-This repository contains small applied AI and automation projects.
+- For an answer, analysis, review, or plan, inspect the relevant materials and
+  report the result. Do not edit files unless the request also asks for a
+  change.
+- For a requested in-scope change, build, or fix, make the local changes and
+  run relevant non-destructive checks.
+- Ask for confirmation before adding a production dependency, deleting files,
+  making an external change such as a commit or push, materially expanding the
+  MVP, or restructuring a substantial part of the repository.
 
-Relevant directions:
+## Implementation rules
 
-* job application tracking;
-* job offer analysis;
-* workflow automation;
-* document processing;
-* simple RAG;
-* source-grounded answers;
-* human validation;
-* simple token/API cost estimation;
-* basic routing by task, cost, sensitivity or complexity.
+- Prefer the simplest maintainable solution.
+- Use clear Python, explicit names, and small functions when useful.
+- Keep deterministic guarantees, such as route rules and output validation, in
+  code rather than delegating them blindly to a model.
+- Do not create an abstraction for a single use.
+- Avoid frameworks, complex agents, enterprise architecture, and unnecessary
+  infrastructure.
+- Never version secrets. Read local `.env` files when needed and keep
+  `.env.example` free of secret values.
 
-A possible use case is a B2B document workflow around RFPs, security questionnaires or due diligence. Treat it as a portfolio demonstrator, not as a startup, SaaS, agency or commercial product.
+## Verification and reporting
 
-## Code standards
-
-Write code that is:
-
-* simple;
-* readable;
-* maintainable;
-* testable;
-* easy to explain in an interview.
-
-Prefer:
-
-* clear Python;
-* explicit names;
-* small functions when useful;
-* limited dependencies;
-* simple error handling;
-* straightforward file structure.
-
-Avoid:
-
-* unnecessary frameworks;
-* premature abstraction;
-* complex architecture for simple scripts;
-* heavy dependencies without justification;
-* code that is hard to explain.
-
-## Documentation standards
-
-Keep documentation short and useful.
-
-For each relevant project or script, document:
-
-* purpose;
-* how to run it;
-* inputs and outputs;
-* main technical choices;
-* known limits;
-* next useful improvement.
-
-Do not create long documentation unless it improves understanding, reproducibility or interview value.
-
-## Test standards
-
-When code is added or changed, provide at least one simple verification:
-
-* command to run;
-* example input/output;
-* small unit test;
-* or documented manual check.
-
-Keep tests proportional to the project.
-
-## Anti-overengineering
-
-Do not propose or implement without strong justification:
-
-* enterprise architecture;
-* advanced LangGraph;
-* complex agents;
-* multi-agent workflows;
-* local LLM production setup;
-* vLLM / Ollama production setup;
-* advanced RAGAS;
-* fine-tuning;
-* full MLOps;
-* VPC architecture;
-* enterprise connectors;
-* complete SaaS;
-* pricing;
-* commercial strategy;
-* freelance prospecting;
-* agency launch;
-* full repository refactor.
-
-If a request moves in this direction, flag the risk and propose a simpler version.
-
-## Workflow
-
-Before major changes:
-
-1. read `README.md`;
-2. read `AGENTS.md`;
-3. identify the concrete goal;
-4. propose a short plan;
-5. implement in small steps;
-6. verify the result;
-7. summarize changes and next action.
-
-Ask before:
-
-* changing many files;
-* adding dependencies;
-* deleting files;
-* changing project structure;
-* running destructive commands;
-* touching system configuration;
-* expanding the project scope.
-
-## Done means
-
-A task is done when:
-
-* the result is usable;
-* the code works or the limitation is explicit;
-* the usage is understandable;
-* a minimal verification exists;
-* important choices are documented;
-* the next action is clear.
+- Run available tests, linting, and relevant checks after changes.
+- Add proportionate verification when adding code: a test, example, or
+  documented manual check.
+- Report changed files, checks run, limitations, and material risks.
