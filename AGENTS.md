@@ -53,3 +53,5 @@ its exclusions without explicit approval.
 - Add proportionate verification when adding code: a test, example, or
   documented manual check.
 - Report changed files, checks run, limitations, and material risks.
+- After completing a task and validating tests, update `Current state` and `Active tasks` in `docs/PROJECT.md`.
+- Document major technical, security, or scoping choices in `docs/DECISIONS.md`. Do not add an entry if no material decision was made.
