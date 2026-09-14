@@ -48,21 +48,32 @@ claims using a small annotated scenario set.
 
 The first local vertical slice is implemented: five synthetic documents, an
 18-scenario Golden Dataset, a Python API, a minimal server-rendered interface,
-and acceptance and evaluation tests. It has no external model call, persistence
-layer, or client-side application.
+and acceptance and evaluation tests. A synchronous JSONL decision audit is now
+connected to the API and POST web form, with HMAC question fingerprints and
+fail-open transport. Tests use memory collectors or temporary files.
+The 2026-09-14 validation passed all 27 tests and all 18 Golden Dataset scenarios
+(100% routing/recall/citations; zero unsupported, invalid or forbidden claims).
+It has no external model call, database, or client-side application.
+See [the audit guide](AUDIT.md) for local configuration and known limits.
+Phase 1 (Deterministic Guardrails & Audit Engine) is ready for integration from
+codex/vertical-slice into main. The showcase README and LLM boundary remain
+separate delivery steps; no merge or public release is recorded yet.
 
 ## Current milestone
 
-Use the Golden Dataset metrics to define the minimal audit boundary before
-considering any model integration.
+Integrate Phase 1 into main, then prepare its public showcase before starting
+the fail-closed generation boundary.
 
 ## Active tasks
 
 1. Keep the Golden Dataset and deterministic decision policy covered by the
    evaluation report.
-2. Define the minimal audit record from the metrics already measured, including
-   its treatment of question content.
-3. Specify and test a fail-closed generation boundary before adding any model
+2. Review and merge the Phase 1 pull request from codex/vertical-slice into main.
+   Automated POST and disk checks pass; browser-based manual review remains
+   available through the audit guide.
+3. Create codex/github-showcase from merged main: phase-based README, Mermaid
+   architecture, key-free Quickstart, measured results and explicit limitations.
+4. Specify and test a fail-closed generation boundary before adding any model
    dependency or external call.
 
 ## Success criteria

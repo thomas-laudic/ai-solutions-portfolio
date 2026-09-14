@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 from pathlib import Path
 from time import perf_counter
@@ -19,7 +20,7 @@ def _tokens(text: str) -> set[str]:
 
 
 def _load_documents() -> list[dict[str, Any]]:
-    return [json.loads(path.read_text(encoding="utf-8")) for path in CORPUS_DIRECTORY.glob("*.json")]
+    return [json.loads(path.read_text(encoding="utf-8")) for path in sorted(CORPUS_DIRECTORY.glob("*.json"))]
 
 
 def _document_scores(question: str, documents: list[dict[str, Any]]) -> list[tuple[int, dict[str, Any]]]:
@@ -30,8 +31,7 @@ def _document_scores(question: str, documents: list[dict[str, Any]]) -> list[tup
     ]
 
 
-def _select_document(question: str, documents: list[dict[str, Any]]) -> dict[str, Any] | None:
-    matches = _document_scores(question, documents)
+def _select_document(matches: list[tuple[int, dict[str, Any]]]) -> dict[str, Any] | None:
     score, document = max(matches, default=(0, None), key=lambda match: match[0])
     if document is None or score < document["minimum_match_count"]:
         return None
@@ -55,11 +55,12 @@ def _evidence_from(document: dict[str, Any]) -> Evidence:
     )
 
 
-def answer_question(question: str) -> QuestionResult:
+def answer_question(question: str, *, decision_context: dict[str, Any] | None = None) -> QuestionResult:
     """Return a safe structured result from the approved local corpus."""
     started_at = perf_counter()
     documents = _load_documents()
-    document = _select_document(question, documents)
+    scores = _document_scores(question, documents)
+    document = _select_document(scores)
 
     if document is None:
         route = "insufficient_evidence"
@@ -109,6 +110,32 @@ def answer_question(question: str) -> QuestionResult:
         latency_ms=0.0,
     )
     fidelity = assess_result_fidelity(result, {item["id"] for item in documents})
+    if decision_context is not None:
+        score, candidate = max(scores, default=(0, None), key=lambda match: match[0])
+        if document is None:
+            reasons = ["no_direct_evidence"]
+        elif document["contradictory"]:
+            reasons = ["contradictory"]
+        elif document["ambiguous"]:
+            reasons = ["ambiguous"]
+        else:
+            reasons = [code for flag, code in (
+                ("approved", "not_approved"), ("current", "not_current"), ("shareable", "restricted")
+            ) if not document[flag]] or ["direct_evidence", "approved", "current", "shareable"]
+        canonical = json.dumps(sorted(documents, key=lambda item: item["id"]), sort_keys=True, separators=(",", ":"))
+        decision_context.update(
+            corpus_version="sha256:" + hashlib.sha256(canonical.encode("utf-8")).hexdigest(),
+            domain="in_domain" if score > 0 else "out_of_domain",
+            reason_codes=reasons,
+            invalid_citation_count=len(fidelity.invalid_citation_ids),
+            criteria={
+                "candidate_document_id": candidate["id"] if candidate is not None else None,
+                "retrieval_match_count": score,
+                "retrieval_threshold": candidate["minimum_match_count"] if candidate is not None else None,
+                **{flag: candidate[flag] if candidate is not None else None
+                   for flag in ("approved", "current", "shareable", "ambiguous", "contradictory")},
+            },
+        )
     return result.model_copy(update={
         "unsupported_claims": list(fidelity.unsupported_claims),
         "latency_ms": round((perf_counter() - started_at) * 1000, 3),

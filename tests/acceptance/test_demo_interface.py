@@ -22,7 +22,8 @@ def test_demo_page_exposes_question_form_and_scope_notice() -> None:
 
     assert response.status_code == 200
     assert response.headers["content-type"].startswith("text/html")
-    assert '<form method="get"' in response.text
+    assert '<form method="post"' in response.text
+    assert '/?question=' not in response.text
     assert '<label for="question">Question</label>' in response.text
     assert 'name="question"' in response.text
     assert "Synthetic corpus" in response.text
@@ -30,7 +31,7 @@ def test_demo_page_exposes_question_form_and_scope_notice() -> None:
 
 
 def test_auto_draft_page_displays_draft_and_citation() -> None:
-    response = asyncio.run(_request("GET", "/", params={"question": AUTO_DRAFT_QUESTION}))
+    response = asyncio.run(_request("POST", "/", data={"question": AUTO_DRAFT_QUESTION}))
 
     assert response.status_code == 200
     assert 'data-route="auto_draft"' in response.text
@@ -42,7 +43,7 @@ def test_auto_draft_page_displays_draft_and_citation() -> None:
 
 
 def test_human_review_page_displays_owner_without_draft() -> None:
-    response = asyncio.run(_request("GET", "/", params={"question": HUMAN_REVIEW_QUESTION}))
+    response = asyncio.run(_request("POST", "/", data={"question": HUMAN_REVIEW_QUESTION}))
 
     assert response.status_code == 200
     assert 'data-route="human_review"' in response.text
@@ -53,7 +54,7 @@ def test_human_review_page_displays_owner_without_draft() -> None:
 
 
 def test_insufficient_evidence_page_displays_safe_abstention() -> None:
-    response = asyncio.run(_request("GET", "/", params={"question": INSUFFICIENT_EVIDENCE_QUESTION}))
+    response = asyncio.run(_request("POST", "/", data={"question": INSUFFICIENT_EVIDENCE_QUESTION}))
 
     assert response.status_code == 200
     assert 'data-route="insufficient_evidence"' in response.text
@@ -65,7 +66,7 @@ def test_insufficient_evidence_page_displays_safe_abstention() -> None:
 
 def test_demo_page_escapes_question_html() -> None:
     unsafe_question = '<script>alert("unsafe")</script>'
-    response = asyncio.run(_request("GET", "/", params={"question": unsafe_question}))
+    response = asyncio.run(_request("POST", "/", data={"question": unsafe_question}))
 
     assert response.status_code == 200
     assert unsafe_question not in response.text
@@ -74,7 +75,7 @@ def test_demo_page_escapes_question_html() -> None:
 
 @pytest.mark.parametrize("question", ["", "x" * 501])
 def test_demo_rejects_invalid_question_length(question: str) -> None:
-    response = asyncio.run(_request("GET", "/", params={"question": question}))
+    response = asyncio.run(_request("POST", "/", data={"question": question}))
 
     assert response.status_code == 422
 
@@ -88,7 +89,7 @@ def test_demo_rejects_invalid_question_length(question: str) -> None:
     ],
 )
 def test_demo_route_matches_api_result(question: str, expected_route: str) -> None:
-    page_response = asyncio.run(_request("GET", "/", params={"question": question}))
+    page_response = asyncio.run(_request("POST", "/", data={"question": question}))
     api_response = asyncio.run(_request("POST", "/questions", json={"question": question}))
 
     assert api_response.json()["route"] == expected_route

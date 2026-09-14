@@ -42,6 +42,8 @@ three representative synthetic scenarios to `auto_draft`, `human_review`, or
 See the [vertical-slice guide](docs/VERTICAL_SLICE.md) for the API contract, run
 commands, and stated limits. A separate [evaluation guide](docs/EVALUATION.md)
 documents the 18-scenario Golden Dataset and its metrics.
+The [local audit guide](docs/AUDIT.md) covers synchronous JSONL events, HMAC
+pseudonymization, POST submissions and local troubleshooting.
 
 See [the operational project brief](docs/PROJECT.md) and
 [implementation decisions](docs/DECISIONS.md) for the current state.

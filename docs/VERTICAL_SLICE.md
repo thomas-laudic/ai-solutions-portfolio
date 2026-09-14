@@ -31,9 +31,11 @@ the source identifier, excerpt, and approval/current/shareability flags.
 ## Minimal interface
 
 `GET /` serves a local, server-rendered demonstration over the same service and
-result models as the API. It includes the three annotated examples and makes
+result models as the API. `POST /` evaluates its URL-encoded question form;
+the example buttons also submit POST requests. It includes the three annotated examples and makes
 the route, evidence, review owner, cost, latency, and human-review boundary
-visible. It uses no client-side script or external asset.
+visible. It uses no client-side script or external asset. Results include a
+trace ID, also returned as X-Trace-ID. See [the audit guide](AUDIT.md).
 
 ## Local use on Windows
 

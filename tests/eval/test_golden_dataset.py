@@ -2,7 +2,8 @@ import json
 from pathlib import Path
 
 from trustreply.fidelity import assess_result_fidelity
-from trustreply.service import answer_question, classify_question_domain
+from trustreply.audit import MemoryAuditSink, evaluate_with_audit
+from trustreply.service import classify_question_domain
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
@@ -38,9 +39,26 @@ def test_golden_dataset() -> None:
     total_cost_usd = 0.0
     latencies_ms: list[float] = []
     failures: list[str] = []
+    sink = MemoryAuditSink()
 
     for scenario in scenarios:
-        result = answer_question(scenario["question"])
+        result, event = evaluate_with_audit(
+            scenario["question"], sink, channel="evaluation", scenario_id=scenario["id"],
+        )
+        assert event.context.scenario_id == scenario["id"]
+        assert event.decision.route == scenario["expected_route"]
+        assert event.output.citation_ids == scenario["expected_evidence_ids"]
+        assert event.decision.review_owner == scenario["expected_review_owner"]
+        assert event.decision.domain == classify_question_domain(scenario["question"])
+        assert event.output.unsupported_claim_count == 0
+        assert event.output.invalid_citation_count == 0
+        assert event.output.draft_present == (scenario["expected_route"] == "auto_draft")
+        for tag, code in (("stale", "not_current"), ("restricted", "restricted"),
+                          ("ambiguous", "ambiguous"), ("contradictory", "contradictory")):
+            if tag in scenario["tags"]:
+                assert code in event.decision.reason_codes
+        assert event.performance.processing_latency_ms == result.latency_ms
+        assert event.performance.estimated_cost_usd == result.cost_usd
         actual_evidence_ids = [item.document_id for item in result.evidence]
         route_matches += result.route == scenario["expected_route"]
         citation_matches += actual_evidence_ids == scenario["expected_evidence_ids"]
@@ -101,6 +119,7 @@ def test_golden_dataset() -> None:
     print(f"Estimated cost: ${total_cost_usd:.4f}")
 
     assert not failures, "\n".join(failures)
+    assert len(sink.events) == 18
     assert route_accuracy == 1.0
     assert abstention_recall == 1.0
     assert review_recall == 1.0

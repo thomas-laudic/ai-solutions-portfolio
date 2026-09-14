@@ -1,7 +1,6 @@
 """Small server-rendered demo page for the TrustReply decision result."""
 
 from html import escape
-from urllib.parse import urlencode
 
 from trustreply.models import Evidence, QuestionResult
 
@@ -87,13 +86,15 @@ def _render_result(question: str, result: QuestionResult) -> str:
     </section>"""
 
 
-def render_demo_page(question: str | None, result: QuestionResult | None) -> str:
+def render_demo_page(question: str | None, result: QuestionResult | None, trace_id: str | None = None) -> str:
     """Render the local demo without scripts or external assets."""
     examples = "".join(
-        f'<a href="/?{urlencode({"question": example})}">{escape(example)}</a>'
+        f'<form method="post" action="/"><button name="question" value="{escape(example, quote=True)}">{escape(example)}</button></form>'
         for example in EXAMPLE_QUESTIONS
     )
     result_html = _render_result(question, result) if question is not None and result is not None else ""
+    if trace_id is not None:
+        result_html += f'<p class="metrics">Trace: {escape(trace_id)}</p>'
     question_value = escape(question or "", quote=True)
 
     return f"""<!doctype html>
@@ -138,12 +139,12 @@ def render_demo_page(question: str | None, result: QuestionResult | None) -> str
       <h1>TrustReply</h1>
       <p class="scope">Synthetic corpus. A human must review any draft before sending.</p>
     </header>
-    <form method="get" action="/">
+    <form method="post" action="/">
       <label for="question">Question</label>
       <input id="question" name="question" value="{question_value}" minlength="1" maxlength="500" required>
       <button type="submit">Evaluate evidence</button>
-      <nav class="examples" aria-label="Example questions">{examples}</nav>
     </form>
+    <nav class="examples" aria-label="Example questions">{examples}</nav>
     {result_html}
   </main>
 </body>

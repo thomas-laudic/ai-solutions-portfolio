@@ -48,3 +48,27 @@ duplicate strategic documentation and premature product scope.
   must match a known cited excerpt, and every citation identifier must exist.
 - Route accuracy, abstention and review recall, out-of-domain recall, citation
   compliance, unsupported claims, latency, and cost form the initial report.
+
+## 2026-09-11: Minimal synchronous decision audit
+
+- Emit one validated JSONL event per completed evaluation via a dedicated
+  audit module and injectable sink; keep filesystem operations out of the
+  deterministic service. The service supplies decision facts from the same
+  corpus snapshot and lexical scores used for routing.
+- Record trace/event IDs, UTC time, schema/policy/corpus versions, route,
+  reason codes, evidence IDs, fidelity counts, processing latency and cost.
+  Expected labels and forbidden-claim checks remain in the Golden Dataset runner.
+- Pseudonymize questions with HMAC-SHA-256; never persist questions, drafts,
+  excerpts or exception content. Use TRUSTREPLY_AUDIT_HMAC_KEY when configured,
+  otherwise a random process-local key. No key manager or rotation mechanism.
+- Write synchronously to logs/audit.jsonl, excluded from Git. A shared sink
+  serializes threads in one process. Transport errors preserve the decision
+  and emit a content-free error with the trace ID to operational logging.
+  No queue, multi-worker guarantee, automatic retention or immutable storage.
+- Submit both the web form and example buttons through POST, avoiding question
+  content in generated URLs. Parse the single URL-encoded field with the
+  standard library; no dependency is added. Return X-Trace-ID and no-store
+  response headers and show the trace identifier on the result page.
+- Keep the highest-scoring candidate's criteria even below threshold, so an
+  abstention is explainable; citation_ids remains empty when none is selected.
+  A sorted corpus traversal makes lexical ties reproducible between machines.
