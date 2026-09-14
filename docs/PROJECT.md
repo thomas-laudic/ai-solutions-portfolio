@@ -46,21 +46,35 @@ claims using a small annotated scenario set.
 
 ## Current state
 
-The repository foundation exists. No application code, synthetic corpus,
-scenario set, dependency file, test runner, or interface exists yet.
+The first local vertical slice is implemented: five synthetic documents, an
+18-scenario Golden Dataset, a Python API, a minimal server-rendered interface,
+and acceptance and evaluation tests. A synchronous JSONL decision audit is now
+connected to the API and POST web form, with HMAC question fingerprints and
+fail-open transport. Tests use memory collectors or temporary files.
+The 2026-09-14 validation passed all 27 tests and all 18 Golden Dataset scenarios
+(100% routing/recall/citations; zero unsupported, invalid or forbidden claims).
+It has no external model call, database, or client-side application.
+See [the audit guide](AUDIT.md) for local configuration and known limits.
+Phase 1 (Deterministic Guardrails & Audit Engine) is ready for integration from
+codex/vertical-slice into main. The showcase README and LLM boundary remain
+separate delivery steps; no merge or public release is recorded yet.
 
 ## Current milestone
 
-Define the first end-to-end vertical slice before selecting dependencies or
-building an interface.
+Integrate Phase 1 into main, then prepare its public showcase before starting
+the fail-closed generation boundary.
 
 ## Active tasks
 
-1. Define a minimal synthetic corpus and three representative annotated
-   questions.
-2. Define the result schema, evidence fields, and acceptance criteria for the
-   three routes.
-3. Implement and test one narrow end-to-end path using those fixtures.
+1. Keep the Golden Dataset and deterministic decision policy covered by the
+   evaluation report.
+2. Review and merge the Phase 1 pull request from codex/vertical-slice into main.
+   Automated POST and disk checks pass; browser-based manual review remains
+   available through the audit guide.
+3. Create codex/github-showcase from merged main: phase-based README, Mermaid
+   architecture, key-free Quickstart, measured results and explicit limitations.
+4. Specify and test a fail-closed generation boundary before adding any model
+   dependency or external call.
 
 ## Success criteria
 

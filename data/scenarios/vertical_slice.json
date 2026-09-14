@@ -1,0 +1,17 @@
+[
+  {
+    "id": "encrypted-at-rest",
+    "question": "Is customer data encrypted at rest?",
+    "expected_route": "auto_draft"
+  },
+  {
+    "id": "eu-data-residency",
+    "question": "Is all customer data stored exclusively in the European Union?",
+    "expected_route": "human_review"
+  },
+  {
+    "id": "customer-managed-keys",
+    "question": "Do you provide customer-managed encryption keys?",
+    "expected_route": "insufficient_evidence"
+  }
+]

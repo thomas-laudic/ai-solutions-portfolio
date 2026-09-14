@@ -1,0 +1,13 @@
+{
+  "id": "incident-response-notes-2026",
+  "title": "Synthetic incident response notes",
+  "approved": true,
+  "current": true,
+  "shareable": true,
+  "ambiguous": false,
+  "contradictory": true,
+  "review_owner": "Security",
+  "keywords": ["customer", "customers", "notified", "notification", "24", "hours", "security", "incident", "breach", "within"],
+  "minimum_match_count": 4,
+  "excerpt": "One section states a 24-hour notification target, while another requires notification according to the applicable contract."
+}

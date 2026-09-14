@@ -1,0 +1,13 @@
+{
+  "id": "product-capabilities-guidance-2026",
+  "title": "Synthetic product capabilities guidance",
+  "approved": true,
+  "current": true,
+  "shareable": true,
+  "ambiguous": true,
+  "contradictory": false,
+  "review_owner": "Product",
+  "keywords": ["sso", "available", "every", "all", "plan", "plans", "customers"],
+  "minimum_match_count": 4,
+  "excerpt": "SSO availability depends on the customer's plan and contracted product configuration."
+}
