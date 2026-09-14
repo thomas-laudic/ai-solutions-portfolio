@@ -72,3 +72,13 @@ duplicate strategic documentation and premature product scope.
 - Keep the highest-scoring candidate's criteria even below threshold, so an
   abstention is explainable; citation_ids remains empty when none is selected.
   A sorted corpus traversal makes lexical ties reproducible between machines.
+
+## 2026-09-14: Successive public delivery phases
+
+- Present the merged deterministic engine as an independently runnable Phase 1.
+- Keep showcase work on codex/github-showcase and clearly distinguish delivered
+  behavior, Phase 2 generation-boundary design, and planned Phase 3 hybrid retrieval.
+- Phase 3 implementation scope and dependencies remain separate decisions;
+  the roadmap adds no current model call or infrastructure requirement.
+- Publish reference-set metrics with their synthetic-data and extractive-check
+  limitations, and distinguish verified Windows execution from Linux instructions.

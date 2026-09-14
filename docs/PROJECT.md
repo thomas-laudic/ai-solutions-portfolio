@@ -55,26 +55,27 @@ The 2026-09-14 validation passed all 27 tests and all 18 Golden Dataset scenario
 (100% routing/recall/citations; zero unsupported, invalid or forbidden claims).
 It has no external model call, database, or client-side application.
 See [the audit guide](AUDIT.md) for local configuration and known limits.
-Phase 1 (Deterministic Guardrails & Audit Engine) is ready for integration from
-codex/vertical-slice into main. The showcase README and LLM boundary remain
-separate delivery steps; no merge or public release is recorded yet.
+Phase 1 (Deterministic Guardrails & Audit Engine) was merged into main through
+PR #1, merge commit aa0d016. The phase-based showcase README is prepared on
+codex/github-showcase, created from that merged main. Phase 2 is in design;
+no LLM integration is implemented. Linux Quickstart commands are documented
+but have not yet been verified on Linux.
 
 ## Current milestone
 
-Integrate Phase 1 into main, then prepare its public showcase before starting
-the fail-closed generation boundary.
+Review and publish the Phase 1 showcase before implementing the fail-closed
+generation boundary.
 
 ## Active tasks
 
 1. Keep the Golden Dataset and deterministic decision policy covered by the
    evaluation report.
-2. Review and merge the Phase 1 pull request from codex/vertical-slice into main.
-   Automated POST and disk checks pass; browser-based manual review remains
-   available through the audit guide.
-3. Create codex/github-showcase from merged main: phase-based README, Mermaid
-   architecture, key-free Quickstart, measured results and explicit limitations.
-4. Specify and test a fail-closed generation boundary before adding any model
+2. Review the README on codex/github-showcase, then commit and publish when
+   requested. It includes Mermaid, platform-specific Quickstarts and limits.
+3. Specify and test a fail-closed generation boundary before adding any model
    dependency or external call.
+4. Phase 3: evaluate hybrid retrieval with an expanded reference set after
+   Phase 2; choose dependencies and implementation scope separately.
 
 ## Success criteria
 
